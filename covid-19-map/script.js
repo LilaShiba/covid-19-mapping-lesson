@@ -71,9 +71,11 @@ async function covidData(statesData){
     let res = await fetch(url)
     let data = await res.json()
     let newdata = []
-    // add covid to statesData
+    // get only most recent data
+    data = data.splice(0,56)
+    // cycle through covid data
     for(let i=0; i <56; i++){
-        // get that covid data
+        // remove that which is not in geoJSON (ideally would just add these to geoJSON)
         console.log(data[i].state)
         let arr = ['AS','GU', 'MP', 'VI', 'PR']
         if (!arr.includes(data[i].state)){
